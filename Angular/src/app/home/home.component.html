@@ -1,0 +1,25 @@
+<div>
+  <span>Current Account: </span>
+  <strong>{{currentAccount}}</strong>
+</div>
+<div>
+  <span>Contract Address: </span>
+  <strong>{{contractAddress}}</strong>
+</div>
+<div style="display: flex; flex-wrap: wrap;">
+  <mat-card *ngFor="let charity of charities" style="max-width: 350px;">
+    <mat-card-header>
+      <mat-card-title>{{charity.name}}</mat-card-title>
+      <mat-card-subtitle>{{charity.contractAddress}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="charity.imageUrl" [alt]="charity.name">
+    <mat-card-content>
+      <p>
+        {{charity.description}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-button [routerLink]="['/charity',{id: charity.contractAddress}]" style="color:red">Donate</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

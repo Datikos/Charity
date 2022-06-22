@@ -1,0 +1,49 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Activity
+
+
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <strong>Name: </strong>{{donorResult.name}}
+    </p>
+    <p>
+      <strong>Donor Address: </strong>{{donorResult.donorAddress}}
+    </p>
+    <p>
+      <strong>Donation Count: </strong>{{donorResult.donationCount}}
+    </p>
+    <p>
+      <strong>Total Donation Amount: </strong>{{donorResult.totalDonationAmount}} Wei
+    </p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button (click)="getDonor()">Refresh Donor</button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Register
+    </mat-card-title>
+    <mat-card-subtitle>
+      Donor registration can be done on each account once.
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <mat-form-field hintLabel="Donor Name" appearance="standard" style="width: 50%;">
+        <mat-label>Donor Name</mat-label>
+        <input matInput #inputDonorName maxlength="50" minlength="2" placeholder="Donor Name" [(ngModel)]="donorName">
+        <mat-hint align="end">{{inputDonorName.value?.length || 0}}/50</mat-hint>
+      </mat-form-field>
+    </p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button (click)="addDonor()">Register</button>
+  </mat-card-actions>
+</mat-card>

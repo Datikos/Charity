@@ -1,0 +1,44 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Check Project Submition
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <mat-form-field  appearance="standard" style="width: 90%;margin-right:10px">
+        <mat-label>Your Project Contract Address</mat-label>
+        <input matInput  placeholder="Contract Address" [(ngModel)]="projectAddress">
+      </mat-form-field>
+    </p>
+<div>
+  Result:
+<p>
+  <strong>authorName: </strong>{{checkResult.authorName}}
+</p>
+<p>
+  <strong>blockNum: </strong>{{checkResult.blockNum}}
+</p>
+<p>
+  <strong>contractAddress: </strong>{{checkResult.contractAddress}}
+</p>
+<p>
+  <strong>hash: </strong>{{checkResult.hash}}
+</p>
+<p>
+  <strong>walletAddress: </strong>{{checkResult.walletAddress}}
+</p>
+<p>
+  <strong>timestamp: </strong>{{checkResult.timestamp}}
+</p>
+  {{checkResult | json}}
+</div>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button (click)="check()">Check</button>
+  </mat-card-actions>
+</mat-card>
+
+
+
+

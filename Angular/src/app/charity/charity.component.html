@@ -1,0 +1,107 @@
+<p>Charity</p>
+
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Charity Info</mat-card-title>
+    <mat-card-subtitle>Amount withdraw permited only beneficiary address.</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <strong>Platform balance: </strong>{{balance}} Eth.
+    </p>
+    <p>
+      <strong>Charity Name: </strong>{{name}}
+    </p>
+    <p>
+      <strong>Charity Description: </strong>{{description}}
+    </p>
+    <p>
+      <strong>Beneficiary Name: </strong>{{beneficiaryName}}
+    </p>
+    <p>
+      <strong>Donation Count: </strong>{{totalDonationsCount}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button (click)="getInfo()">Refresh Info</button>
+    <button mat-button (click)="withdraw()" style="color: red;">Withdraw</button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Donate</mat-card-title>
+    <mat-card-subtitle>Enter data and press Donate.</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <mat-form-field hintLabel="Max 20 characters" appearance="standard" style="width: 40%;margin-right:10px">
+        <mat-label>Donation Amount (wei)</mat-label>
+        <input matInput #inputName min="1000000000" placeholder="Donation Amount" [(ngModel)]="donationAmount">
+        <mat-hint align="end">Min. 1000000000 wei</mat-hint>
+      </mat-form-field>
+      <mat-form-field hintLabel="Message" appearance="standard" style="width: 40%;">
+        <mat-label>Message</mat-label>
+        <input matInput #inputName maxlength="30" placeholder="Message" [(ngModel)]="donationMessage">
+      </mat-form-field>
+    </p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button (click)="donate()" style="color:red">Donate</button>
+  </mat-card-actions>
+</mat-card>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>My Donations</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <table mat-table [dataSource]="dataSource" class="donation-table" >
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.date | date:'dd.MM.yy HH:mm'}} </td>
+      </ng-container>
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef> amount </th>
+        <td mat-cell *matCellDef="let element"> {{element.amount}} Eth</td>
+      </ng-container>
+
+      <ng-container matColumnDef="message">
+        <th mat-header-cell *matHeaderCellDef> message </th>
+        <td mat-cell *matCellDef="let element"> {{element.message}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="donorAddress">
+        <th mat-header-cell *matHeaderCellDef> Donor Address </th>
+        <td mat-cell *matCellDef="let element"> {{element.donorAddress}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button (click)="getMyDonations()">Refresh</button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Change Beneficiary Address
+    </mat-card-title>
+    <mat-card-subtitle>
+      Only owner is permited make operation.
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+      <mat-form-field hintLabel="Exact 42 characters" appearance="standard" style="width:70%">
+        <mat-label>Enter Beneficiary Address</mat-label>
+        <input matInput #inputBeneficiaryAddress maxlength="42" minlength="42" placeholder="Beneficiary Address" [(ngModel)]="newBeneficiaryAddress">
+        <mat-hint align="end">{{inputBeneficiaryAddress.value?.length || 0}}/42</mat-hint>
+      </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button (click)="chachgeBeneficiary()" style="color: red;">Change Beneficiary</button>
+  </mat-card-actions>
+</mat-card>

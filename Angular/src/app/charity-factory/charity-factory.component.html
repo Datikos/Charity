@@ -1,0 +1,73 @@
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Charity Platform Activity
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <strong>Platform balance: </strong>{{balance}} Eth.
+    </p>
+    <p>
+      <strong>Charity Donors Count: </strong>{{totalDonors}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button (click)="getBalance()">Refresh Info</button>
+  </mat-card-actions>
+</mat-card>
+
+<br/>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Charity Registration
+    </mat-card-title>
+    <mat-card-subtitle>
+      Only owner can add Charity.
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+<p>
+    <mat-form-field hintLabel="Max 20 characters" appearance="standard" style="width: 70%;">
+      <mat-label>Enter Charity Name</mat-label>
+      <input matInput #inputName maxlength="20" placeholder="Charity Name" [(ngModel)]="registerCharity.Name">
+      <mat-hint align="end">{{inputName.value?.length || 0}}/20</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field hintLabel="Max 50 characters" appearance="standard" style="width: 70%;">
+      <mat-label>Enter Charity Description</mat-label>
+      <input matInput #inputDescription maxlength="50" placeholder="Charity Description" [(ngModel)]="registerCharity.Description">
+      <mat-hint align="end">{{inputDescription.value?.length || 0}}/50</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field hintLabel="Max 20 characters" appearance="standard" style="width: 70%;">
+      <mat-label>Enter Beneficiary Name</mat-label>
+      <input matInput #inputBeneficiaryName maxlength="20" placeholder="Beneficiary Name" [(ngModel)]="registerCharity.BeneficiaryName">
+      <mat-hint align="end">{{inputBeneficiaryName.value?.length || 0}}/20</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field hintLabel="Exact 42 characters" appearance="standard" style="width: 70%;">
+      <mat-label>Enter Beneficiary Address</mat-label>
+      <input matInput #inputBeneficiaryAddress maxlength="42" minlength="42" placeholder="Beneficiary Address" [(ngModel)]="registerCharity.BeneficiaryAddress">
+      <mat-hint align="end">{{inputBeneficiaryAddress.value?.length || 0}}/42</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field hintLabel="Max 20 characters" appearance="standard" style="width: 70%;">
+      <mat-label>Enter Image Url</mat-label>
+      <input matInput #inputImageUrl maxlength="100" placeholder="Image Url" [(ngModel)]="registerCharity.ImageUrl">
+      <mat-hint align="end">{{inputImageUrl.value?.length || 0}}/100</mat-hint>
+    </mat-form-field>
+  </p>
+
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button (click)="addCharity()">Add Charity</button>
+  </mat-card-actions>
+</mat-card>
+

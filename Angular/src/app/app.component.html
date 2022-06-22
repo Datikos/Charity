@@ -1,0 +1,20 @@
+<div class="toolbar" role="banner">
+
+  <span style="margin-left: 40px;font-size: 24px;">Charity</span>
+
+  <button mat-button [routerLink]="['/home']">Home</button>
+  <button mat-button [routerLink]="['/factory']">Factory</button>
+  <button mat-button [routerLink]="['/donor']">Donor</button>
+
+  <button mat-button [routerLink]="['/check']">Check Project Submition</button>
+    <div class="spacer"></div>
+    <span><strong>Acc: </strong>{{currentAccount}}</span>
+    <a style="padding: 0 15px; color:white">
+      <mat-icon svgIcon="logos_github"></mat-icon>
+
+    </a>
+</div>
+
+<div class="content" role="main">
+  <router-outlet></router-outlet>
+</div>
