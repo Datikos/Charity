@@ -68,14 +68,21 @@ export class CheckComponent implements OnInit {
   contractAddress:string="0xa9b18c8291e05C7cd9c3030979553cB9e6742b86";
 
   async ngOnInit(): Promise<void> {
-      this.currentContract = new this.web3Service.web3.eth.Contract(this.daiAbi,this.contractAddress,
-        {
-          from:'0x926CFcF2af54eeE121e817f03D75D0E5a7E302Fb',
-          gasPrice: '20000000000', // 20 gwei
-          gas:5000000
-        });
+
+
+    this.currentContract = new this.web3Service.web3.eth.Contract(this.daiAbi,this.contractAddress,
+      {
+        // from:'0x926CFcF2af54eeE121e817f03D75D0E5a7E302Fb',
+        // gasPrice: '20000000000', // 20 gwei
+        // gas:5000000
+      });
+
+      this.web3Service.currentAccount.subscribe((acc:string)=>{
+        this.currentContract.options.from=acc;
+          this.currentContract.defaultAccount=acc;
+      })
+
     }
-  //0x47bc15E9E0dc047C4F2C30F2Ea7D3bE74B9d81B5 zura
     check()
         {
           this.currentContract.methods
