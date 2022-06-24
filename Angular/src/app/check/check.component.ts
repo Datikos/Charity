@@ -70,12 +70,7 @@ export class CheckComponent implements OnInit {
   async ngOnInit(): Promise<void> {
 
 
-    this.currentContract = new this.web3Service.web3.eth.Contract(this.daiAbi,this.contractAddress,
-      {
-        // from:'0x926CFcF2af54eeE121e817f03D75D0E5a7E302Fb',
-        // gasPrice: '20000000000', // 20 gwei
-        // gas:5000000
-      });
+    this.currentContract = new this.web3Service.web3.eth.Contract(this.daiAbi,this.contractAddress, { });
 
       this.web3Service.currentAccount.subscribe((acc:string)=>{
         this.currentContract.options.from=acc;
